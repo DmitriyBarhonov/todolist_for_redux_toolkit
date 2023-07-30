@@ -20,14 +20,14 @@ export const AddItemForm = React.memo(function ({addItem, disabled = false}: Add
 			setError('Title is required');
 		}
 	}
-
+   
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.currentTarget.value)
 	}
 
 	const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 		if (error !== null) {
-			setError(null);
+			setError(null);   
 		}
 		if (e.charCode === 13) {
 			addItemHandler();
@@ -47,5 +47,6 @@ export const AddItemForm = React.memo(function ({addItem, disabled = false}: Add
 		<IconButton color="primary" onClick={addItemHandler} disabled={disabled}>
 			<AddBox/>
 		</IconButton>
-	</div>
-})
+	</div>     
+})  
+        
