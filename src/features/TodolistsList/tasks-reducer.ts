@@ -5,6 +5,7 @@ import { handleServerAppError, handleServerNetworkError } from '../../utils/erro
 import { appActions } from '../../app/app-reducer'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { todolistsActions } from './todolists-reducer'
+import { clearTasksAndTodolist } from '../../common/actions/common.actions'
 
 const initialState: TasksStateType = {}
 
@@ -50,6 +51,9 @@ const slice = createSlice({
                     state[tl.id] = []
                 })
             })
+            .addCase(clearTasksAndTodolist.type, () => {
+                return {}
+            })
     }
 })
 
@@ -64,14 +68,14 @@ export const fetchTasksTC = (todolistId: string): AppThunk => (dispatch) => {
     todolistsAPI.getTasks(todolistId)
         .then((res) => {
             const tasks = res.data.items
-            dispatch(tasksAsctions.setTasks({tasks, todolistId}))
+            dispatch(tasksAsctions.setTasks({ tasks, todolistId }))
             dispatch(appActions.setAppStatus({ status: 'succeeded' }))
         })
 }
 export const removeTaskTC = (taskId: string, todolistId: string): AppThunk => (dispatch) => {
     todolistsAPI.deleteTask(todolistId, taskId)
         .then(res => {
-            const action = tasksAsctions.removeTask({taskId, todolistId})
+            const action = tasksAsctions.removeTask({ taskId, todolistId })
             dispatch(action)
         })
 }
@@ -81,7 +85,7 @@ export const addTaskTC = (title: string, todolistId: string): AppThunk => (dispa
         .then(res => {
             if (res.data.resultCode === 0) {
                 const task = res.data.data.item
-                const action = tasksAsctions.addTask({task})
+                const action = tasksAsctions.addTask({ task })
                 dispatch(action)
                 dispatch(appActions.setAppStatus({ status: 'succeeded' }))
             } else {
@@ -115,7 +119,7 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
         todolistsAPI.updateTask(todolistId, taskId, apiModel)
             .then(res => {
                 if (res.data.resultCode === 0) {
-                    const action = tasksAsctions.updateTask({taskId, model: domainModel, todolistId})
+                    const action = tasksAsctions.updateTask({ taskId, model: domainModel, todolistId })
                     dispatch(action)
                 } else {
                     handleServerAppError(res.data, dispatch);

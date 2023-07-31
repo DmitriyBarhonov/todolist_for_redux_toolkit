@@ -1,9 +1,12 @@
+import { todolistsActions } from './../TodolistsList/todolists-reducer';
 import { Dispatch } from 'redux'
 import {  appActions} from '../../app/app-reducer'
 import { authAPI, LoginParamsType } from '../../api/todolists-api'
 import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '../../app/store'
+import { tasksAsctions } from '../TodolistsList/tasks-reducer';
+import { clearTasksAndTodolist } from '../../common/actions/common.actions';
 
 
 
@@ -46,6 +49,7 @@ export const logoutTC = ():AppThunk => (dispatch) => {
             if (res.data.resultCode === 0) {
                 dispatch(authActions.setIsLoggedIn({isLoggedIn: false}))
                 dispatch(appActions.setAppStatus({status: 'succeeded'}))
+                dispatch(clearTasksAndTodolist())
             } else {
                 handleServerAppError(res.data, dispatch)
             }
