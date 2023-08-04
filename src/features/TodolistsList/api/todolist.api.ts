@@ -1,6 +1,6 @@
-import { instance, ResponseType } from "../../common/api/api";
-import { TaskPriorities, TaskStatuses } from "../../common/enums";
-import { AddTaskArgType, } from "./tasks-reducer";
+import { instance, ResponseType } from "../../../common/api/api";
+import { AddTaskArgType, } from "../tasks-reducer";
+import { GetTasksResponse, TaskType, TodolistType, UpdateTaskModelType } from "./todolist.types.api";
 
 // api
 export const todolistsAPI = {
@@ -35,36 +35,3 @@ export const todolistsAPI = {
 }
 
 
-// types
-export type TodolistType = {
-    id: string
-    title: string
-    addedDate: string
-    order: number
-}
-
-export type TaskType = {
-    description: string
-    title: string
-    status: TaskStatuses
-    priority: TaskPriorities
-    startDate: string
-    deadline: string
-    id: string
-    todoListId: string
-    order: number
-    addedDate: string
-}
-export type UpdateTaskModelType = {
-    title: string
-    description: string
-    status: TaskStatuses
-    priority: TaskPriorities
-    startDate: string
-    deadline: string
-}
-export type GetTasksResponse = {
-    error: string | null
-    totalCount: number
-    items: TaskType[]
-}

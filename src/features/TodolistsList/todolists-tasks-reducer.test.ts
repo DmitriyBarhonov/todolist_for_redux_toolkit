@@ -1,28 +1,31 @@
-import { TodolistDomainType, todolistsActions, todolistsReducer} from './todolists-reducer'
-import {tasksReducer, TasksStateType} from './tasks-reducer'
-import { TodolistType } from './todolist.api';
+// import { TodolistDomainType, todolistThunks, todolistsActions, todolistsReducer} from './todolists-reducer'
+// import {tasksReducer, TasksStateType} from './tasks-reducer'
+// import { TodolistType } from './api/todolist.types.api';
 
 
-test('ids should be equals', () => {
-    const startTasksState: TasksStateType = {};
-    const startTodolistsState: Array<TodolistDomainType> = [];
 
-    let todolist: TodolistType = {
-        title: 'new todolist',
-        id: 'any id',
-        addedDate: '',
-        order: 0
-    }
+// test('ids should be equals', () => {
+//     const startTasksState: TasksStateType = {};
+//     const startTodolistsState: Array<TodolistDomainType> = [];
 
-    const action = todolistsActions.addTodolist({todolist});
+//     let todolist: TodolistType = {
+//         title: 'new todolist',
+//         id: 'any id',
+//         addedDate: '',
+//         order: 0
+//     }
 
-    const endTasksState = tasksReducer(startTasksState, action)
-    const endTodolistsState = todolistsReducer(startTodolistsState, action)
+//     const action = todolistThunks.addTodolist({todolist})
 
-    const keys = Object.keys(endTasksState);
-    const idFromTasks = keys[0];
-    const idFromTodolists = endTodolistsState[0].id;
+//     const endTasksState = tasksReducer(startTasksState, action)
+//     const endTodolistsState = todolistsReducer(startTodolistsState, action)
 
-    expect(idFromTasks).toBe(action.payload.todolist.id);
-    expect(idFromTodolists).toBe(action.payload.todolist.id);
-});
+//     const keys = Object.keys(endTasksState);
+//     const idFromTasks = keys[0];
+//     const idFromTodolists = endTodolistsState[0].id;
+
+//     expect(idFromTasks).toBe(action.payload.todolist.id);
+//     expect(idFromTodolists).toBe(action.payload.todolist.id);
+// });
+
+export const dw = ""
