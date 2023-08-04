@@ -1,12 +1,11 @@
-import { TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType } from '../../api/todolists-api'
-import { Dispatch } from 'redux'
-import { AppDispatch, AppRootStateType, AppThunk } from '../../app/store'
-import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
+
 import { appActions } from '../../app/app-reducer'
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {  createSlice } from '@reduxjs/toolkit'
 import { todolistsActions } from './todolists-reducer'
 import { clearTasksAndTodolist } from '../../common/actions/common.actions'
-import { createAppAsyncThunk } from '../../utils/create-app-async-thunk'
+import { createAppAsyncThunk, handleServerAppError, handleServerNetworkError,} from '../../common/utils'
+import { TaskType, UpdateTaskModelType, todolistsAPI } from './todolist.api'
+import { TaskPriorities, TaskStatuses } from '../../common/enums'
 
 const initialState: TasksStateType = {}
 
@@ -15,15 +14,6 @@ const slice = createSlice({
     name: "tasks",
     initialState,
     reducers: {
-        // updateTask: (state, action: PayloadAction<{
-        //     taskId: string,
-        //     model: UpdateDomainTaskModelType, todolistId: string}>) => {
-        //     const tasks = state[action.payload.todolistId]
-        //     const index = tasks.findIndex(t => t.id === action.payload.taskId)
-        //     if (index !== -1) {
-        //         tasks[index] = { ...tasks[index], ...action.payload.model }
-        //     }
-        // },
     },
     extraReducers: (bilder) => {
         bilder.addCase(todolistsActions.addTodolist, (state, action) => {
@@ -148,11 +138,6 @@ export const updateTask = createAppAsyncThunk<{ taskId: string, domainModel: Upd
         handleServerNetworkError(error, dispatch)
         return rejectWithValue(null)
     }
-
-
-
-
-
 
 })
 

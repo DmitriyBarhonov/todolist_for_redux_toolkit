@@ -1,13 +1,10 @@
 import React, { useCallback, useEffect } from 'react'
 import './App.css'
-import { TodolistsList } from '../features/TodolistsList/TodolistsList'
-import { ErrorSnackbar } from '../components/ErrorSnackbar/ErrorSnackbar'
+import { TodolistsList } from '../features/TodolistsList/Todolists-list'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppRootStateType } from './store'
 import { initializeAppTC, RequestStatusType } from './app-reducer'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Login } from '../features/Login/Login'
-import { logoutTC } from '../features/Login/auth-reducer'
 import {
 	AppBar,
 	Button,
@@ -18,7 +15,10 @@ import {
 	Toolbar,
 	Typography
 } from '@mui/material';
-import { Menu } from '@mui/icons-material'
+import Login from '@mui/icons-material/Login'
+import Menu from "@mui/icons-material/Menu"
+import { logoutTC } from '../features/auth/auth-reducer'
+import { ErrorSnackbar } from '../common/components/ErrorSnackbar/Error-snackbar'
 
 type PropsType = {
 	demo?: boolean

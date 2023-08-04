@@ -11,12 +11,13 @@ import {
     todolistsActions
 } from './todolists-reducer'
 import { addTask, removeTask, tasksAsctions, TasksStateType, tasksThunks, updateTask } from './tasks-reducer'
-import { TaskStatuses } from '../../api/todolists-api'
 import { Grid, Paper } from '@mui/material'
-import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
 import { Todolist } from './Todolist/Todolist'
 import { Navigate } from 'react-router-dom'
-import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppDispatch } from '../../common/hooks/useAppDispatch'
+import { AddItemForm } from '../../common/components/AddItemForm/AddItem-form'
+import { TaskStatuses } from '../../common/enums'
+
 
 type PropsType = {
     demo?: boolean
