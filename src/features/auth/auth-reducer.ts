@@ -1,9 +1,5 @@
-import { todolistsActions } from '../TodolistsList/todolists-reducer';
-import { Dispatch } from 'redux'
 import { appActions } from '../../app/app-reducer'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppThunk } from '../../app/store'
-import { tasksAsctions } from '../TodolistsList/tasks-reducer';
 import { createAppAsyncThunk, handleServerAppError, handleServerNetworkError } from '../../common/utils';
 import { clearTasksAndTodolist } from '../../common/actions/common.actions';
 import { authAPI, LoginParamsType } from './auth-api';
@@ -38,7 +34,7 @@ const slice = createSlice({
 
 // thunks
 
-export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, { values: LoginParamsType }>("auth/login", async (values, thunkAPI) => {
+export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, { values: LoginParamsType },{rejectValue: number}>("auth/login", async (values, thunkAPI) => {
     const { dispatch, rejectWithValue } = thunkAPI
     try {
         dispatch(appActions.setAppStatus({ status: 'loading' }))
@@ -48,11 +44,11 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, { values: Logi
             return { isLoggedIn: true }
         } else {
             handleServerAppError(res.data, dispatch)
-            return rejectWithValue(null)
+            return rejectWithValue(1)
         }
     } catch (error) {
         handleServerNetworkError(error, dispatch)
-        return rejectWithValue(null)
+        return rejectWithValue(1)
     }
 })
 

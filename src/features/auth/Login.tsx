@@ -31,8 +31,17 @@ export const Login = () => {
             password: '',
             rememberMe: false
         },
+        // 1.26.50
         onSubmit: values => {
-            dispatch(login({values}));
+            dispatch(login({ values }))
+                .unwrap()
+                .then((res) => {
+                     debugger
+                })
+                .catch((res)=>{
+                    console.log(res);
+                    
+                })
         },
     })
 
@@ -48,7 +57,7 @@ export const Login = () => {
                     <FormLabel>
                         <p>
                             To log in get registered <a href={'https://social-network.samuraijs.com/'}
-                                                        target={'_blank'}>here</a>
+                                target={'_blank'}>here</a>
                         </p>
                         <p>
                             or use common test account credentials:
