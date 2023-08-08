@@ -1,7 +1,6 @@
 import { Dispatch } from 'redux'
-import {ResponseType} from '../api/api'
 import { appActions } from '../../app/app-reducer'
-
+import {ResponseType} from "../types/common.types"
 
 
 export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatch) => {

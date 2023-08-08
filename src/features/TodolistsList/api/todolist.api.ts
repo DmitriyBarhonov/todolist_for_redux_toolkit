@@ -1,7 +1,7 @@
-import { instance, ResponseType } from "../../../common/api/api";
+import { instance } from "../../../common/api/api";
 import { AddTaskArgType, } from "../tasks-reducer";
 import { GetTasksResponse, TaskType, TodolistType, UpdateTaskModelType } from "./todolist.types.api";
-
+import {ResponseType} from "../../../common/types/common.types"
 // api
 export const todolistsAPI = {
     getTodolists() {
