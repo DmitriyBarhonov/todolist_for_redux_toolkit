@@ -6,7 +6,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { clearTasksAndTodolist } from '../../common/actions/common.actions';
 import { todolistsAPI } from './api/todolist.api';
 import { TodolistType } from './api/todolist.types.api';
-import { createAppAsyncThunk } from '../../common/utils';
+import { createAppAsyncThunk, thunkTryCatch } from '../../common/utils';
 
 
 // types
@@ -90,6 +90,21 @@ export const removeTodolist = createAppAsyncThunk<{ id: string }, string>("todol
 
 
 export const addTodolist = createAppAsyncThunk<{ todolist: TodolistType }, string>('todolists/addTodolist', async (title, thunkAPI) => {
+    
+return thunkTryCatch(thunkAPI,async () => {
+    const { dispatch, rejectWithValue } = thunkAPI
+    const res = await todolistsAPI.createTodolist(title)
+    if(res.data.resultCode === 0){
+        return { todolist: res.data.data.item }
+    }else{
+        handleServerNetworkError(res.data, dispatch);
+        return rejectWithValue(null)
+    }
+  
+} )
+
+})
+export const _addTodolist = createAppAsyncThunk<{ todolist: TodolistType }, string>('todolists/addTodolist', async (title, thunkAPI) => {
     const { dispatch, rejectWithValue } = thunkAPI
     try {
         dispatch(appActions.setAppStatus({ status: 'loading' }))

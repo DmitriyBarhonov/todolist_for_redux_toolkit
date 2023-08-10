@@ -1,11 +1,13 @@
 import React from 'react'
-import { useFormik } from 'formik'
+import { FormikHelpers, useFormik } from 'formik'
 import { useSelector } from 'react-redux'
 import { login } from './auth-reducer'
 import { AppRootStateType } from '../../app/store'
 import { Navigate } from 'react-router-dom'
 import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField } from '@mui/material'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
+import { BaseResponseType } from '../../common/types'
+import { LoginParamsType } from './auth-api'
 
 export const Login = () => {
     const dispatch = useAppDispatch()
@@ -14,16 +16,16 @@ export const Login = () => {
 
     const formik = useFormik({
         validate: (values) => {
-            if (!values.email) {
-                return {
-                    email: 'Email is required'
-                }
-            }
-            if (!values.password) {
-                return {
-                    password: 'Password is required'
-                }
-            }
+            // if (!values.email) {
+            //     return {
+            //         email: 'Email is required'
+            //     }
+            // }
+            // if (!values.password) {
+            //     return {
+            //         password: 'Password is required'
+            //     }
+            // }
 
         },
         initialValues: {
@@ -32,14 +34,15 @@ export const Login = () => {
             rememberMe: false
         },
         // 1.26.50
-        onSubmit: values => {
+        onSubmit: (values, formikHelpers: FormikHelpers<LoginParamsType>) => {
             dispatch(login({ values }))
                 .unwrap()
-                .then((res) => {
-                     debugger
-                })
-                .catch((res)=>{
+                .catch((res: BaseResponseType)=>{
                     console.log(res);
+                    res.fieldsErrors?.forEach((fieldsErrors)=>{
+                        formikHelpers.setFieldError(fieldsErrors.field, fieldsErrors.error)
+                    })
+                    
                     
                 })
         },
