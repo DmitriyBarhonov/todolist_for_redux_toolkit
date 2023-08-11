@@ -5,10 +5,7 @@ import { appActions } from '../../app/app-reducer';
 import { handleServerNetworkError } from './handleServerNetworkError';
  
 
-export const thunkTryCatch = async <T>(
-  thunkAPI: BaseThunkAPI<AppRootStateType, unknown, AppDispatch, null | BaseResponseType>,
-  logic: () => Promise<T>
-): Promise<T | ReturnType<typeof thunkAPI.rejectWithValue>> => {
+export const thunkTryCatch = async <T>(thunkAPI: BaseThunkAPI<AppRootStateType, unknown, AppDispatch, null | BaseResponseType>,logic: () => Promise<T>): Promise<T | ReturnType<typeof thunkAPI.rejectWithValue>> => {
   const { dispatch, rejectWithValue } = thunkAPI;
   dispatch(appActions.setAppStatus({ status: "loading" }));
   try {
