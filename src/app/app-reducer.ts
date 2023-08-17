@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { AnyAction, PayloadAction, createSlice } from '@reduxjs/toolkit'
 // import { AppThunk } from './store'
 // import { authActions } from '../features/auth/auth-reducer'
 // import { authAPI } from '../features/auth/auth-api'
@@ -23,6 +23,26 @@ const slice = createSlice({
         setAppInitialized: (state, action: PayloadAction<{ isInitialized: boolean }>) => {
             state.isInitialized = action.payload.isInitialized
         }
+    },
+    extraReducers: (bilder) => {
+        bilder.addMatcher((action: AnyAction) => {
+            console.log(action);
+            return action.type.endsWith("/pending")
+
+
+        }, (state, action: AnyAction) => {
+            state.status = 'loading'
+        })
+            .addMatcher((action: AnyAction) => {
+                return action.type.endsWith("/fulfilled")
+            }, (state, action: AnyAction) => {
+                state.status = 'idle'
+            })
+            .addMatcher((action: AnyAction) => {
+                return action.type.endsWith("/rejected")
+            }, (state, action: AnyAction) => {
+                state.status = 'failed'
+            })
     }
 })
 
