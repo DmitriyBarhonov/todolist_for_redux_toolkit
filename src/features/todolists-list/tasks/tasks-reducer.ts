@@ -1,12 +1,12 @@
 
-import { appActions } from '../../app/app-reducer'
+import { appActions } from '../../../app/app-reducer'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { todolistThunks, todolistsActions } from './todolists-reducer'
-import { clearTasksAndTodolist } from '../../common/actions/common.actions'
-import { createAppAsyncThunk, handleServerAppError, handleServerNetworkError, thunkTryCatch, } from '../../common/utils'
-import { todolistsAPI } from './api/todolist.api'
-import { TaskPriorities, TaskStatuses } from '../../common/enums'
-import { TaskType, UpdateTaskModelType } from './api/todolist.types.api'
+import { todolistThunks, todolistsActions } from '../todolists/todolists-reducer'
+import { clearTasksAndTodolist } from '../../../common/actions/common.actions'
+import { createAppAsyncThunk, handleServerAppError, handleServerNetworkError, thunkTryCatch, } from '../../../common/utils'
+import { todolistsAPI } from '../api/todolist.api'
+import { TaskPriorities, TaskStatuses } from '../../../common/enums'
+import { TaskType, UpdateTaskModelType } from '../api/todolist.types.api'
 
 const initialState: TasksStateType = {}
 
@@ -133,10 +133,11 @@ export type UpdateDomainTaskModelType = {
     startDate?: string
     deadline?: string
 }
-export type TasksStateType = {
-    [key: string]: Array<TaskType>
-}
+// export type TasksStateType = {
+//     [key: string]: Array<TaskType>
+// }
 
+export type TasksStateType = Record<string, TaskType[]> 
 export type AddTaskArgType = { title: string, todolistId: string }
 export const tasksReducer = slice.reducer
 export const tasksAsctions = slice.actions

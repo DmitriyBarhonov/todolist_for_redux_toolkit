@@ -1,12 +1,12 @@
 
-import { appActions, RequestStatusType } from '../../app/app-reducer'
-import { handleServerNetworkError } from '../../common/utils/handleServerNetworkError'
-import { AppThunk } from '../../app/store';
+import { appActions, RequestStatusType } from '../../../app/app-reducer'
+import { handleServerNetworkError } from '../../../common/utils/handleServerNetworkError'
+import { AppThunk } from '../../../app/store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { clearTasksAndTodolist } from '../../common/actions/common.actions';
-import { todolistsAPI } from './api/todolist.api';
-import { TodolistType } from './api/todolist.types.api';
-import { createAppAsyncThunk, thunkTryCatch } from '../../common/utils';
+import { clearTasksAndTodolist } from '../../../common/actions/common.actions';
+import { todolistsAPI } from '../api/todolist.api';
+import { TodolistType } from '../api/todolist.types.api';
+import { createAppAsyncThunk, thunkTryCatch } from '../../../common/utils';
 
 
 // types

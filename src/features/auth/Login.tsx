@@ -8,45 +8,12 @@ import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, 
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { BaseResponseType } from '../../common/types'
 import { LoginParamsType } from './auth-api'
+import { useLogin } from './lib/useLogin'
 
 export const Login = () => {
-    const dispatch = useAppDispatch()
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn);
-
-    const formik = useFormik({
-        validate: (values) => {
-            // if (!values.email) {
-            //     return {
-            //         email: 'Email is required'
-            //     }
-            // }
-            // if (!values.password) {
-            //     return {
-            //         password: 'Password is required'
-            //     }
-            // }
-
-        },
-        initialValues: {
-            email: '',
-            password: '',
-            rememberMe: false
-        },
-        // 1.26.50
-        onSubmit: (values, formikHelpers: FormikHelpers<LoginParamsType>) => {
-            dispatch(login({ values }))
-                .unwrap()
-                .catch((res: BaseResponseType)=>{
-                    console.log(res);
-                    res.fieldsErrors?.forEach((fieldsErrors)=>{
-                        formikHelpers.setFieldError(fieldsErrors.field, fieldsErrors.error)
-                    })
-                    
-                    
-                })
-        },
-    })
+    const { formik } = useLogin()
 
     if (isLoggedIn) {
         return <Navigate to={"/"} />

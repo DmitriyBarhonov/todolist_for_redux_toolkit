@@ -42,7 +42,7 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, { values: Logi
         if (res.data.resultCode === 0) {
             return { isLoggedIn: true }
         } else {
-            handleServerAppError(res.data, dispatch, false)
+            handleServerAppError(res.data, dispatch)
             return rejectWithValue(res.data)
         }
     })

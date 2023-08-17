@@ -1,6 +1,6 @@
 import { instance } from "../../../common/api/api";
 import { BaseResponseType } from "../../../common/types";
-import { AddTaskArgType, } from "../tasks-reducer";
+import { AddTaskArgType, } from "../tasks/tasks-reducer";
 import { GetTasksResponse, TaskType, TodolistType, UpdateTaskModelType } from "./todolist.types.api";
 
 // api
