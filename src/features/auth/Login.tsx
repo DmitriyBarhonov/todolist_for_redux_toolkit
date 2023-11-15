@@ -1,13 +1,8 @@
 import React from 'react'
-import { FormikHelpers, useFormik } from 'formik'
 import { useSelector } from 'react-redux'
-import { login } from './auth-reducer'
 import { AppRootStateType } from '../../app/store'
 import { Navigate } from 'react-router-dom'
 import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField } from '@mui/material'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { BaseResponseType } from '../../common/types'
-import { LoginParamsType } from './auth-api'
 import { useLogin } from './lib/useLogin'
 
 export const Login = () => {
@@ -27,7 +22,7 @@ export const Login = () => {
                     <FormLabel>
                         <p>
                             To log in get registered <a href={'https://social-network.samuraijs.com/'}
-                                target={'_blank'}>here</a>
+                                target={'_blank'} rel="noreferrer">here</a>
                         </p>
                         <p>
                             or use common test account credentials:

@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button/Button"
-import React, { FC, useCallback } from "react"
+import React, { FC } from "react"
 import { useAppDispatch } from "../../../../../common/hooks/useAppDispatch"
 import { FilterValuesType, TodolistDomainType, todolistsActions } from "../../../todolists/todolists-reducer"
 

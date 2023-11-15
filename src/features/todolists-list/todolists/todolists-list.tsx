@@ -27,7 +27,7 @@ export const TodolistsList: React.FC<PropsType> = ({ demo = false }) => {
         }
         const thunk = fetchTodolists()
         dispatch(thunk)
-    }, [])
+    }, [demo, dispatch, isLoggedIn])
 
 
     const addTodolistCallBack = useCallback((title: string) => {

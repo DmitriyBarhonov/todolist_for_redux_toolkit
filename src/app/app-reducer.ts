@@ -1,8 +1,4 @@
 import { AnyAction, PayloadAction, createSlice } from '@reduxjs/toolkit'
-// import { AppThunk } from './store'
-// import { authActions } from '../features/auth/auth-reducer'
-// import { authAPI } from '../features/auth/auth-api'
-// import { createAppAsyncThunk, handleServerNetworkError } from '../common/utils'
 
 const initialState = {
     status: 'idle' as RequestStatusType,

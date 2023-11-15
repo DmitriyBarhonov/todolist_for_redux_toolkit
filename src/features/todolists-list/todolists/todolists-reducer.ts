@@ -1,7 +1,6 @@
 
-import { appActions, RequestStatusType } from '../../../app/app-reducer'
+import {  RequestStatusType } from '../../../app/app-reducer'
 import { handleServerNetworkError } from '../../../common/utils/handleServerNetworkError'
-import { AppThunk } from '../../../app/store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { clearTasksAndTodolist } from '../../../common/actions/common.actions';
 import { todolistsAPI } from '../api/todolist.api';
@@ -60,7 +59,7 @@ const slice = createSlice({
 // thunks
 
 
-export const fetchTodolists = createAppAsyncThunk<{ todolists: TodolistType[] }, void>("todolists/fetchTodolists", async (undefined, thunkAPI) => {
+export const fetchTodolists = createAppAsyncThunk<{ todolists: TodolistType[] }, void>("todolists/fetchTodolists", async (_, thunkAPI) => {
     return thunkTryCatch(thunkAPI, async () => {
         const res = await todolistsAPI.getTodolists()
         return { todolists: res.data }
