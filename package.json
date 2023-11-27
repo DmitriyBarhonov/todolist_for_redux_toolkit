@@ -1,5 +1,5 @@
 {
-	"homepage": "https://github.com/DmitriyBarhonov/todolist_for_redux_toolkit",
+	"homepage": "https://dmitriybarhonov.github.io/todolist_for_redux_toolkit/",
 	"name": "it-incubator-todolist-ts",
 	"jest": {
 		"moduleNameMapper": {
